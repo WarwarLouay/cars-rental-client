@@ -2,13 +2,15 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { CarsReducer } from './Reducers/CarsReducer';
+import { AlertsReducer } from './Reducers/AlertsReducer';
 
 const composeEnhancers = composeWithDevTools({
 
 });
 
 const rootReducer = combineReducers({
-    CarsReducer
+    CarsReducer,
+    AlertsReducer
 })
 
 const store = createStore(
