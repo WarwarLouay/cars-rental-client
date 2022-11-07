@@ -1,11 +1,48 @@
-import React from 'react'
-import DefaultLayout from '../Components/DefaultLayout'
+import React from 'react';
+import { Row, Col, Form, Input } from 'antd';
+import car from '../assets/images/car.png';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { UserRegister } from '../Redux/Actions/UserActions';
 
 const Register = () => {
+
+  const dispatch = useDispatch();
+
+  function onFinish(values) {
+    dispatch(UserRegister(values));
+    console.log(values);
+  };
+
   return (
-    <DefaultLayout>
-      Register
-    </DefaultLayout>
+    <div className='login'>
+      <Row gutter={16} className='d-flex align-items-center'>
+        <Col lg={16} style={{position: 'relative'}}>
+          <img src={car} alt='' />
+        </Col>
+        <Col lg={8} className='text-left p-5'>
+          <Form layout='vertical' className='login-form p-5' onFinish={onFinish}>
+            <h1>Register</h1>
+            <hr />
+            <Form.Item name='username' label='Username' rules={[{required: true}]}>
+              <Input />
+            </Form.Item>
+
+            <Form.Item name='password' label='Password' rules={[{required: true}]}>
+              <Input />
+            </Form.Item>
+
+            <Form.Item name='cpassword' label='Confirm Password' rules={[{required: true}]}>
+              <Input />
+            </Form.Item>
+
+            <button className='btn1 mt-2 mb-3'>Register</button>
+            <br />
+            <Link to='/login'>Login</Link>
+          </Form>
+        </Col>
+      </Row>
+    </div>
   )
 }
 
